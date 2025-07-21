@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>本地时间显示</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: clamp(2rem, 10vw, 5rem); /* 响应式字体大小 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        #time-display {
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="time-display"></div>
+    <script>
+        function displayTime() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+            const milliseconds = Math.floor(now.getMilliseconds() / 100).toString();
+            const timeString = `${hours}:${minutes}:${seconds}.${milliseconds}`;
+            document.getElementById('time-display').textContent = timeString;
+        }
+        displayTime(); // 初始调用
+        setInterval(displayTime, 100); // 每100ms更新
+    </script>
+</body>
+</html>
